@@ -1,0 +1,192 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useEffect, useState } from "react";
+
+import SidebarNavPenitip from "../../Components2/SideBarNavPenitip";
+import { FetchHistoryTransaksi } from "../../api/ApiPenitip";
+import {
+	Carousel,
+	CarouselContent,
+	CarouselItem,
+	CarouselNext,
+	CarouselPrevious,
+} from "../../components/ui/carousel";
+import {
+	faHouse,
+} from "@fortawesome/free-solid-svg-icons";
+
+import { toast } from "react-toastify";
+
+import { SyncLoader } from "react-spinners";
+
+import ModalDetailHistory from "./ModalDetailHistory";
+
+const HistoryTransaksiPenitip = () => {
+	const [dataHistory, setDataHistory] = useState<any[]>([]);
+	const [showModal, setShowModal] = useState(false);
+	const [tempIdBarang, setTempIdBarang] = useState(0);
+	const fetchHistoryTransaksi = async () => {
+		try {
+			FetchHistoryTransaksi()
+				.then((response) => {
+					setDataHistory(response.data);
+					console.log(response.data);
+				})
+				.catch((error: any) => {
+					toast.error("Gagal mengambil data history");
+				});
+		} catch (error: any) {
+			throw error.response.data;
+		}
+	};
+
+	useEffect(() => {
+		fetchHistoryTransaksi();
+	}, []);
+
+	const handleClick = (idBarang: number) => {
+		setShowModal(true);
+		setTempIdBarang(idBarang);
+
+	}
+
+	return (
+		<div className="h-full px-10 py-5">
+			<div className="mt-5 max-sm:mt-0">
+				<ol className="inline-flex items-center space-x-1 md:space-x-3">
+					<li className="inline-flex items-center">
+						<a
+							href="/"
+							className="inline-flex items-center text-sm font-medium text-gray-500 hover:text-green-300"
+						>
+							<FontAwesomeIcon
+								className="text-gray-500 text-sm"
+								icon={faHouse}
+							/>
+						</a>
+					</li>
+					<li>
+						<div className="flex items-center">
+							<svg
+								className="w-6 h-6 text-gray-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+									clip-rule="evenodd"
+								></path>
+							</svg>
+							<a
+								href="/marketplace"
+								className="ml-1 text-sm font-medium text-gray-500 md:ml-2"
+							>
+								Account
+							</a>
+						</div>
+					</li>
+					<li>
+						<div className="flex items-center">
+							<svg
+								className="w-6 h-6 text-gray-400"
+								fill="currentColor"
+								viewBox="0 0 20 20"
+								xmlns="http://www.w3.org/2000/svg"
+							>
+								<path
+									fill-rule="evenodd"
+									d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+									clip-rule="evenodd"
+								></path>
+							</svg>
+							<span className="ml-1 text-sm font-medium text-[#00B207] md:ml-2">
+								Profile
+							</span>
+						</div>
+					</li>
+				</ol>
+			</div>
+			<div className="flex flex-row gap-4">
+				<SidebarNavPenitip></SidebarNavPenitip>
+				<div className="flex flex-col w-full min-h-[500px] mt-5 border-1 border-gray-300 rounded-lg">
+					<p className="text-2xl font-bold ml-8 mt-5">Order History</p>
+					<Carousel>
+						<CarouselContent>
+							<CarouselItem>
+								<table className="w-full  justify-center text-center mt-5 mb-5">
+									<tr className="flex justify-center items-center py-6 bg-[#F2F2F2]">
+										<td className="w-full flex justify-center items-center">
+											Photo
+										</td>
+										<td className="w-full flex justify-center items-center">
+											Name
+										</td>
+										<td className="w-full flex justify-center items-center">
+											Price
+										</td>
+										<td className="w-full flex justify-center items-center">
+											Sold Date
+										</td>
+										<td className="w-full flex justify-center items-center">
+											Status
+										</td>
+										<td className="w-full flex justify-center items-center">
+											Action
+										</td>
+									</tr>
+									{dataHistory === null ? (
+										<p className="text-center my-10">No Transaction Found</p>
+									) : (
+										dataHistory.map((item: any, index: number) => (
+											<tr
+												key={index}
+												className="flex justify-center items-center py-6 "
+											>
+												<td className="w-full flex justify-center items-center">
+													{item.foto_barang}
+												</td>
+												<td className="w-full flex justify-center items-center">
+													{item.nama_barang}
+												</td>
+												<td className="w-full flex justify-center items-center">
+													{item.harga}
+												</td>
+												<td className="w-full flex justify-center items-center">
+													{item.tanggal_lunas}
+												</td>
+												<td className="w-full flex justify-center items-center">
+													{item.status_barang}
+												</td>
+												<td className="w-full flex justify-center items-center">
+													<button className="text-[#00B207] w-full cursor-pointer" onClick={() => handleClick(item.id_barang)}>View Details</button>
+												</td>
+											</tr>
+										))
+									)}
+								</table>
+							</CarouselItem>
+							<CarouselItem>...</CarouselItem>
+							<CarouselItem>...</CarouselItem>
+						</CarouselContent>
+						<div className="flex justify-center gap-4 mt-4">
+							<CarouselPrevious className="static relative" />
+							<CarouselNext className="static relative" />
+						</div>
+					</Carousel>
+				</div>
+			</div>
+			{showModal && (
+				<ModalDetailHistory
+					show={showModal}
+					idBarang={tempIdBarang}
+					onClose={() => setShowModal(false)}
+
+				/>
+			)}
+		</div>
+
+	);
+};
+
+export default HistoryTransaksiPenitip;
