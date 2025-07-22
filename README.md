@@ -44,7 +44,7 @@ Fully functioning admin panel with **7 custom roles**:
 
 ## 📲 Platform Support
 
-- ✅ **Responsive Web App** (React)
+- ✅ **Web App** (React)
 - ✅ **Mobile App** (Flutter)
 - ✅ **Admin Dashboard** (React + Laravel APIs)
 
