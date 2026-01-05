@@ -1,10 +1,10 @@
-# ♻️ ReuseMart - Used Goods E-Commerce Platform
+#  ReuseMart - Used Goods E-Commerce Platform
 
 **ReuseMart** is a full-stack e-commerce platform focused on selling **used and second-hand items**. It features a **complete marketplace experience** for buyers, sellers, and admins, built using **React**, **Laravel**, and **Flutter** to support both web and mobile users.
 
 ---
 
-## 🧰 Tech Stack
+##  Tech Stack
 
 - **Frontend Web**: React + Tailwind CSS + ShadCN
 - **Mobile App**: Flutter (iOS & Android)
@@ -13,36 +13,36 @@
 - **Auth**: Laravel Sanctum 
 
 
-## 🛒 Key Features
+##  Key Features
 
-### 🧑‍🤝‍🧑 Marketplace Functions
+###  Marketplace Functions
 
-- 🔍 Product listing & search
-- 🛒 Add to cart, checkout & order tracking
-- 💬 Customer service messaging system
-- 📦 Stock tracking & management
-- 📄 Transaction history
-- 📷 Image upload & preview for items
+-  Product listing & search
+-  Add to cart, checkout & order tracking
+-  Customer service messaging system
+-  Stock tracking & management
+-  Transaction history
+-  Image upload & preview for items
 
-### 🔐 Multi-Role Admin System
+###  Multi-Role Admin System
 
 Fully functioning admin panel with **7 custom roles**:
 
-| Role         | Description                          |
-|--------------|--------------------------------------|
-| 🛡️ Admin      | Super admin, full access             |
-| 💬 CS         | Handles customer support             |
-| 📦 Gudang     | Manages stock & shipping             |
-| 📊 Owner      | Views financial & strategic reports  |
-| 🏢 Organization | Manages organizational details      |
-| 🛍️ Seller     | Uploads and manages used products    |
-| 👤 Buyer      | Buys products and tracks orders      |
+| Role          | Description                          |
+|---------------|--------------------------------------|
+|  Admin        | Super admin, full access             |
+|  CS           | Handles customer support             |
+|  Gudang       | Manages stock & shipping             |
+|  Owner        | Views financial & strategic reports  |
+|  Organization | Manages organizational details       |
+|  Seller       | Uploads and manages used products    |
+|  Buyer        | Buys products and tracks orders      |
 
 > Each role has customized permissions and a dashboard view tailored to their responsibilities.
 
 ---
 
-## 📲 Platform Support
+##  Platform Support
 
 - ✅ **Web App** (React)
 - ✅ **Mobile App** (Flutter)
